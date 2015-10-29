@@ -113,10 +113,15 @@ namespace artur
 	const T& arturVector<T>::front() const { return _elements[0]; }
 
 	template<typename T>
-	T& arturVector<T>::back() { return _elements[--_size]; }
+	T& arturVector<T>::back() { 
+		size_t temp = _size; //we don't want to mess with original _size, so we create temporary variable
+		return _elements[temp - 1]; }
 
 	template<typename T>
-	const T& arturVector<T>::back() const { return _elements[--size]; }
+	const T& arturVector<T>::back() const { 
+		size_t temp = _size;
+		return _elements[temp - 1];
+	}
 
 	template<typename T>
 	void arturVector<T>::push_back(const T& t)
