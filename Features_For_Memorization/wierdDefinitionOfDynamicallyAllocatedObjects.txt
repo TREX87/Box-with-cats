@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Artur
+{
+    string _name;
+    size_t _number;
+public:
+    Artur() : _name(string()) {}
+    Artur(string name, size_t number) : _name(name), _number(number) {}
+    void display(ostream& os)
+    {
+        os << "My name is " << _name << " and my number is " << _number << endl;
+    }
+    ~Artur()
+    {
+        cout << "Destructor for " << _name << " is invoked!" << endl;
+    }
+};
+
+int main()
+{
+    int num;
+    cout << "How many persons you want to process: ";
+    cin >> num;
+    Artur* person;
+    person = new Artur[num];
+    new (person)Artur("Artur", 1);
+    new (person+1)Artur("John", 2);
+    new (person+2)Artur("Mila", 3);
+    person[2].~Artur();
+    for (int i = 0; i < 2; i++)
+        person[i].display(cout);
+
+    return 0;
+}
